@@ -2,5 +2,7 @@
 
 for install:
 ```bash
-sh -c "$(wget -O- https://raw.githubusercontent.com/eric0taylor/dotfiles/refs/heads/main/dotfiles.sh)
+wget https://raw.githubusercontent.com/eric0taylor/dotfiles/refs/heads/main/dotfiles.sh
+chmod +x dotfiles.sh
+dotfiles.sh install arch/slinux
 ```
