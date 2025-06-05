@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 ###########################################################
-### Install dotfiles script                             ###
+### Manage dotfiles script                              ###
 ### Author: Eric Taylor <blister0exist@yandex.ru>       ###
 ### Repo: <https://github.com/eric0taylor/dotfiles.git> ###
-### License: MIT                                        ###
 ###########################################################
 
 # Variables
@@ -18,38 +17,24 @@ if [[ -f $HOME/.gitconfig ]]; then
   git config --global user.email "$REPLY"
 fi
 
-# Check distro
-case "$2" in
-  arch)
-    BRANCH="arch"
-    ;;
-  slinux)
-    BRANCH="slinux"
-    ;;
-  *)
-    echo "Unsupported distro! Exit..."
-    exit 1
-    ;;
-esac
-
 # Check action
 case "$1" in
   install)
     if [[ -d "$HOME/.dotfiles" ]];then
-      echo "Dotfiles is installed! Exit..."
+      echo "Dotfiles is installed! Use "update". Exit..."
       exit 0
     else
-      git clone --branch $BRANCH --single-branch --bare $REPO_PATH $HOME/.dotfiles
-      $_dotfiles checkout $BRANCH
+      git clone --bare $REPO_PATH $HOME/.dotfiles
+      $_dotfiles checkout
       $_dotfiles config --local status.showUntrackedFiles no
     fi
     ;;
 
   update)
     if [[ -d "$HOME/.dotfiles" ]];then
-      $_dotfiles pull origin $BRANCH
+      $_dotfiles pull origin
     else
-      echo "Dotfiles not exist! Exit..."
+      echo "Dotfiles not exist! Use "install". Exit..."
       exit 1
     fi
     ;;
@@ -58,25 +43,22 @@ case "$1" in
     # Need ssh private key on my GitHub!!!
     read -r -p "Enter commit messege: "
     $_dotfiles commit -m $REPLY
-    $_dotfiles push origin $BRANCH
+    $_dotfiles push origin
     ;;
 
   help)
     echo " \
 Script for manage dotfiles  \n \
-Syntax: dotfiles.sh <action> <distro> \n \
+Syntax: dotfiles.sh <action> \n \
   <action>: \n \
     install: isntalling dotfiles \n \
     update: updating dotfiles \n \
     push: upload new configs to github \n \
     help: show this messege \n \
-  <distro>: \n \
-    arch: archlinux \n \
-    slinux: simply linux (Alt)"
-    ;;
+    ;;"
 
   *)
-    echo "Unsupported action! Exit..."
+    echo "Unsupported action! Use "help". Exit..."
     exit 1
     ;;
 esac
