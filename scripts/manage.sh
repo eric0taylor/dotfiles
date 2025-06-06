@@ -40,16 +40,17 @@ case "$1" in
     ;;
 
   push)
-    # Need ssh private key on my GitHub!!!
     read -r -p "Enter commit messege: "
     $_dotfiles commit -m $REPLY
     $_dotfiles push origin
+    exit 0
     ;;
 
   help)
-    echo "Script for manage dotfiles  \n Syntax: dotfiles.sh <action> \n   <action>: \n    install: isntalling dotfiles \n   update: updating dotfiles \n    push: upload new configs to github \n    help: show this messege"
+    echo "Script for manage dotfiles\nSyntax: dotfiles.sh <action>\n  <action>:\n    install: installing dotfiles\n    update: updating dotfiles\n    push: upload new configs to github\n    help: show this messege"
+    exit 0
     ;;
-
+    
   *)
     echo "Unsupported action! Use "help". Exit..."
     exit 1

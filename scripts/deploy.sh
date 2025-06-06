@@ -7,7 +7,9 @@
 
 ### VARIABLES
 USERNAME="ivan"
-SOFT_LIST="xorg-drv-video xorg-drv-input ly i3 rofi alacritty far2l fonts-ttf-gnu-freefont-mono git"
+SCRIPT_URL="https://raw.githubusercontent.com/eric0taylor/dotfiles/refs/heads/main/scripts/manage.sh "
+MANAGE_SCRIPT="/home/$USERNAME/.local/bin/manage.sh"
+SOFT_LIST="xorg-drv-video xorg-drv-input ly i3 rofi alacritty far2l fonts-ttf-gnu-freefont-mono git sudo wget"
 
 # Update system
 apt-get update && apt-get dist-upgrade -y && apt-get install -y update-kernel && update-kernel -y
@@ -25,4 +27,7 @@ mkdir -p /usr/share/themes/Windows-95
 git clone https://github.com/B00merang-Project/Windows-95.git /usr/share/themes/Windows-95/
 rm -rfv /usr/share/themes/Windows-95/{cinnamon,gnome-shell,LICENSE,metacity-1,unity,xfwm4,.git}
 # set dotfiles
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/eric0taylor/dotfiles/refs/heads/main/scripts/manage.sh) install"
+wget $SCRIPT_URL -o $MANAGE_SCRIPT
+chown $USERNAME:$USERNAME $MANAGE_SCRIPT && chmod +x $MANAGE_SCRIPT
+sudo -s $USERNAME $MANAGE_SCRIPT install
+ln -sf /home/$USERNAME/.config/ly/config.ini /etc/ly/config.ini
