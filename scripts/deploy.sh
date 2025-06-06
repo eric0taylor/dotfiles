@@ -26,5 +26,4 @@ git clone https://github.com/B00merang-Project/Windows-95.git /usr/share/themes/
 rm -rfv /usr/share/themes/Windows-95/{cinnamon,gnome-shell,LICENSE,metacity-1,unity,xfwm4,.git}
 # set dotfiles
 su - ivan
-sh -c  https://raw.githubusercontent.com/eric0taylor/dotfiles/refs/heads/main/.local/bin/manage.sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/eric0taylor/dotfiles/refs/heads/main/.local/bin/manage.sh) install"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/eric0taylor/dotfiles/refs/heads/main/scripts/deploy.sh) install"
