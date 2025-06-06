@@ -47,14 +47,7 @@ case "$1" in
     ;;
 
   help)
-    echo " \
-Script for manage dotfiles  \n \
-Syntax: dotfiles.sh <action> \n \
-  <action>: \n \
-    install: isntalling dotfiles \n \
-    update: updating dotfiles \n \
-    push: upload new configs to github \n \
-    help: show this messege"
+    echo "Script for manage dotfiles  \n Syntax: dotfiles.sh <action> \n   <action>: \n    install: isntalling dotfiles \n   update: updating dotfiles \n    push: upload new configs to github \n    help: show this messege"
     ;;
 
   *)
