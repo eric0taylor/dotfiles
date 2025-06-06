@@ -54,8 +54,8 @@ Syntax: dotfiles.sh <action> \n \
     install: isntalling dotfiles \n \
     update: updating dotfiles \n \
     push: upload new configs to github \n \
-    help: show this messege \n \
-    ;;"
+    help: show this messege"
+    ;;
 
   *)
     echo "Unsupported action! Use "help". Exit..."
