@@ -7,7 +7,7 @@
 
 # Variables
 REPO_PATH="https://github.com/eric0taylor/dotfiles.git"
-_dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
+_dotfiles="/usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree="$HOME""
 
 # Check git settings
 if [[ -f $HOME/.gitconfig ]]; then
@@ -32,6 +32,7 @@ case "$1" in
 
   update)
     if [[ -d "$HOME/.dotfiles" ]];then
+      $_dotfiles checkout
       $_dotfiles pull origin
     else
       echo "Dotfiles not exist! Use "install". Exit..."
